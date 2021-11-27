@@ -3,10 +3,11 @@ import React from "react";
 interface Props {
   id: string;
   name: string;
-  onChange: () => void;
+  onChange: any;
   min: number;
   max: number;
   step: number;
+  value: number;
   classes: string;
 }
 
@@ -17,6 +18,7 @@ const PriceRange: React.FC<Props> = ({
     min,
     max,
     step,
+    value,
     classes
 
   }) => { 
@@ -26,6 +28,7 @@ const PriceRange: React.FC<Props> = ({
            name={name}
            min={min}
            max={max}
+           value={value}
            step={step}
            onChange={onChange}
            className={classes}

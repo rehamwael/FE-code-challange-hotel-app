@@ -2,13 +2,14 @@ import React from "react";
 
 interface Props {
   placeholder: string;
-  onChange: () => void;
+  onChange: any;
   border: string;
   bgcolor: string;
   height: string;
   radius: string
   width: string;
   classes: string;
+  value: string
 }
 
 const SearchInput: React.FC<Props> = ({ 
@@ -16,6 +17,7 @@ const SearchInput: React.FC<Props> = ({
     onChange,
     border,
     bgcolor,
+    value,
     height,
     radius,
     width,
@@ -28,6 +30,7 @@ const SearchInput: React.FC<Props> = ({
         placeholder={placeholder}
         onChange={onChange}
         className={classes}
+        value={value}
         style={{
           backgroundColor: bgcolor,
           border,

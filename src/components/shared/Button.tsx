@@ -2,10 +2,9 @@ import React from "react";
 
 interface Props {
   border: string;
-  bgcolor: string;
   text: string;
   height: string;
-  onClick: () => void;
+  onClick: any;
   radius: string
   width: string;
   classes: string;
@@ -13,7 +12,6 @@ interface Props {
 
 const Button: React.FC<Props> = ({ 
     border,
-    bgcolor,
     text,
     height,
     onClick, 
@@ -26,7 +24,6 @@ const Button: React.FC<Props> = ({
       onClick={onClick}
       className={classes}
       style={{
-         backgroundColor: bgcolor,
          border,
          borderRadius: radius,
          height,

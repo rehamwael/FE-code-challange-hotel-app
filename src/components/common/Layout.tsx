@@ -2,7 +2,7 @@ import Head from "next/head"
 import React from "react"
 const Layout = ({ children }: any) => {
     return (
-        <main className="bg-gray-50">
+        <main>
             <Head>
                 <title>Hotel App</title>
                 <meta name="description" content="Hotel NextJS App" />

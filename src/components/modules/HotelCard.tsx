@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   name: string;
-  price: string;
+  price: number;
   currency: string;
   city: string;
 }
