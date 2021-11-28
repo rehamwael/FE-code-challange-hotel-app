@@ -6,9 +6,9 @@ interface Props {
   border: string;
   bgcolor: string;
   height: string;
-  radius: string
+  radius?: string
   width: string;
-  classes: string;
+  classes?: string;
   value: string
 }
 

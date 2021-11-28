@@ -8,7 +8,7 @@ interface Props {
   max: number;
   step: number;
   value: number;
-  classes: string;
+  classes?: string;
 }
 
 const PriceRange: React.FC<Props> = ({ 

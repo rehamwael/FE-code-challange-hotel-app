@@ -5,9 +5,9 @@ interface Props {
   text: string;
   height: string;
   onClick: any;
-  radius: string
+  radius?: string
   width: string;
-  classes: string;
+  classes?: string;
 }
 
 const Button: React.FC<Props> = ({ 
