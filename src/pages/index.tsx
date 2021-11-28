@@ -8,28 +8,12 @@ import PriceRange from "../components/shared/PriceRange";
 import HotelCard from "../components/modules/HotelCard";
 import { Hotel } from "../models/Hotel";
 import { getTotalNights } from "../utils/Helpers";
-// get Hotels Data
-export const getStaticProps = async () => {
-  try {
-    const res = await fetch("https://run.mocky.io/v3/6e1ef542-08f6-45a8-a430-9fceee74e7f0");
-    const data = await res.json();
-    return {
-      props: { hotels: data }
-    }
-  } catch (e: any) {
-    return { notFound: true };
-  }
-}
+import { HotelInitialState } from "../state/HotelInitialState";
+import HotelsService from "../services/HotelsService";
 
 const HomePage: NextPage = ({ hotels }: any) => {
   const [state, setState] = React.useState({
-    searchValue: '',
-    searchFromDate: '',
-    searchToDate: '',
-    searchPrice: 0,
-    filteredHotelsData: hotels,
-    sortByValue: '',
-    totalNights: 1
+    ...HotelInitialState,
   })
   // Search Hotels By keywords
   const searchHotels = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +51,7 @@ const HomePage: NextPage = ({ hotels }: any) => {
     const endDate = new Date(state.searchToDate);
     setState({
       ...state, 
-      filteredHotelsData: state.filteredHotelsData.filter((hotel: Hotel) => 
+      filteredHotelsData: hotels.filter((hotel: Hotel) => 
         new Date(hotel.available_on).getTime() >= startDate.getTime() && new Date(hotel.available_on).getTime() <= endDate.getTime()
       ),
       totalNights: getTotalNights(startDate, endDate)
@@ -98,9 +82,9 @@ const HomePage: NextPage = ({ hotels }: any) => {
     <>
       <Layout>
         <h1 className="text-5xl text-center mb-10">Search Hotel:</h1>
-        <div className="flex items-center	justify-between my-10 flex-wrap">
-          <div className="from-date items-center flex">
-            <span className="mr-4 text-lg	font-bold">From:</span>
+        <div className="flex items-center	lg:justify-between justify-center my-10 flex-wrap">
+          <div className="from-date items-center flex lg:mb-0 mb-2 lg:w-max w-11/12">
+            <span className="mr-4 text-lg	font-bold lg:w-max w-full">From:</span>
             <div className="border-2 py-4 px-12 border-black bg-white">
               <DatePicker
                 id="fromDatePicker"
@@ -112,8 +96,8 @@ const HomePage: NextPage = ({ hotels }: any) => {
               />
             </div>
           </div>
-          <div className="to-date items-center flex">
-            <span className="mr-4 text-lg	font-bold">To:</span>
+          <div className="to-date items-center flex lg:mb-0 mb-2 lg:w-max w-11/12">
+            <span className="mr-4 text-lg	font-bold lg:w-max w-full">To:</span>
             <div className="border-2 py-4 px-12 border-black bg-white">
               <DatePicker
                 id="toDatePicker"
@@ -124,18 +108,18 @@ const HomePage: NextPage = ({ hotels }: any) => {
                 toDate="2021-12-31"
               />
             </div>
-
           </div>
           <Button
             border="none"
             height="60px"
             onClick={searchHotelByDate}
             radius="2px"
-            width="20%"
+            width=""
             text="Search"
-            classes="text-white bg-black"
+            classes="text-white bg-black lg:w-2/12 w-6/12 lg:mx-1 mx-auto"
           />
         </div>
+        {state.filteredHotelsData?.length > 0 ? (
         <div className="lg:flex lg:px-0 px-4">
           <div className="lg:w-1/4 lg:mt-20">
             <SearchInput
@@ -190,8 +174,7 @@ const HomePage: NextPage = ({ hotels }: any) => {
               </div>
             </div>
             <div className={state.filteredHotelsData?.length ? "grid grid-cols-2 mt-10 gap-4": ""}>
-              {state.filteredHotelsData?.length ? (
-                state.filteredHotelsData.map((hotel: Hotel) => (
+              {state.filteredHotelsData.map((hotel: Hotel) => (
                     <HotelCard
                       key={hotel.name}
                       name={hotel.name}
@@ -199,18 +182,24 @@ const HomePage: NextPage = ({ hotels }: any) => {
                       currency="UAE"
                       city={hotel.city}
                     />
-                ))) :
-              (<div className="text-lg py-12 text-center bg-gray-50 mt-12">
-                <h3 className="font-bold text-2xl">No Result found</h3>
-                <p>Try Again with different criteria!</p>
-              </div>)}
-
+              ))}
               </div>
           </div>
-        </div>
+        </div> 
+        ) : (<div className="text-lg py-12 text-center bg-gray-50 mt-12">
+          <h3 className="font-bold text-2xl">No Result found</h3>
+          <p>Search to your favourite Hotels with your expected Booking Data!</p>
+        </div>)}
       </Layout>
     </>
   )
+} 
+// get Hotels Data Server Side
+export const getStaticProps = async () => {
+  const response = await HotelsService.getHotels();
+  return {
+    props: { hotels: response }
+  }
 }
 
 export default HomePage;

@@ -9,5 +9,5 @@ export interface Hotel {
     price: string;
     city: string;
     available_on: string;
-  }
+}
   

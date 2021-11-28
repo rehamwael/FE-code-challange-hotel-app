@@ -1,12 +1,14 @@
 # Hotel App Code Challenge
 
-## Developer Challenge
+## Installation
 
-Using the following endpoint : http://www.mocky.io/v2/5eb8fcb12d0000d088357f2a 
+- make sure you have [NodeJs](https://nodejs.org/en/download/) & NPM installed on your computer. check node -v, npm -v
 
-Build an application to search and list hotels:
+- git clone https://github.com/rehamwael/FE-code-challange-hotel-app.git
 
-![Mock](http://res.cloudinary.com/divwiclgn/image/upload/v1501594231/code-assessment-mock_lauryh.png)
+- yarn install
+
+- npm run dev
 
 ## Requirements and Output
 
@@ -15,42 +17,29 @@ Build an application to search and list hotels:
 - Display the total number of nights based on selected date range. (For example if user search from Aug 12, 2020 to Aug 17, 2020 than Total Number of Nights will be 5.)
 - Display hotel price based on number of nights. (Price x Number of Nights)
 
-### Features
+## Dependencies & Technolgy Used 
+
+- Nextjs version 12.0.4
+- Axios 
+- TypeScript 
+- ReactJS
+- Jest for Unit Testing
+
+## Run Test
+
+- yarn test
+
+![Mock](https://res.cloudinary.com/maf/image/upload/v1638090407/unit-testing.png)
+
+
+### App Features
 
 - User is able to sort based on hotel name and price
 - User is able to filter based on hotel name and price
 
 
-## Conditions
-- You should consume the api endpoint mention and not use it as internal json file
-- You should build this application in ECMAScript 6 or later.
-- You should build this application using Reactjs (NextJS and Typescrit will be a plus).
-
-## What we are looking for
-
-- **Simple, clear, readable code** How well structured it is? Clear separation of concerns? Can anyone just look at it and get the idea to
-what is being done? Does it follow any standards?
-- **Correctness** Does the application do what it promises? Can we find bugs or trivial flaws?
-- **Memory efficiency** How will it behave in case of large datasets?
-- **Testing** How well tested your application is? Can you give some metrics?
 
 
-## Questions & Delivery
 
-If you have any questions to this challenge, please do reach out to us.
-
-The challenge should be delivered as a link to a public git repository (github.com or bitbucket.com are preferred).
-
-## Checklist
-
-Before submitting, make sure that your program
-
-- [ ] Code accompanies the Unit Tests
-- [ ] Usage is clearly mentioned in the README file, This including setup the project, how to run it, how to run unit test, examples,etc
-- [ ] Uses the endpoint directly
-
-## Note
-
-Implementations focusing on **quality over feature completeness** will be highly appreciated,  don’t feel compelled to implement everything and even if you are not able to complete the challenge, please do submit it anyways.
 
 
